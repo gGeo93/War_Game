@@ -67,6 +67,7 @@ public class StunGrenadeActivation : FlyingWeapon
             InvokeRepeating("HarmCausedAround", 0f , 0.1f);            
             yield return new WaitForSeconds(1.6f);
             CancelInvoke("HarmCausedAround");
+            grenadeExplosion.Stop();
             break;
         }
     }
@@ -74,7 +75,10 @@ public class StunGrenadeActivation : FlyingWeapon
     {
         foreach (var e in enemiesWithinRange)
         {
-            e.GetComponent<IDamageable>().DamageCaused(temporaryStunGrenadeDamage);
+            if(e != null)
+            {
+                e.GetComponent<IDamageable>().DamageCaused(temporaryStunGrenadeDamage);
+            }
         }
     }
 }

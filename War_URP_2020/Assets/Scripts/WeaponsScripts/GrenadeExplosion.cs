@@ -46,7 +46,10 @@ public class GrenadeExplosion : FlyingWeapon
     {
         foreach (var e in enemiesWithinRange)
         {
-            e.GetComponent<IDamageable>().DamageCaused(classicGrenadeDamage);
+            if(e != null)
+            {
+                e.GetComponent<IDamageable>().DamageCaused(classicGrenadeDamage);
+            }
         }
     }
     
